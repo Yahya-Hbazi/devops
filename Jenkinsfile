@@ -7,9 +7,9 @@ pipeline{
         maven 'Maven3'
     }
     environment {
-        APP_NAME = "gitjendockub"
-        RELEASE = "3.0.0"
-        DOCKER_USER = "karimbr"
+        APP_NAME = "devops"
+        RELEASE = "1.0.0"
+        DOCKER_USER = "yahyahb"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -26,7 +26,7 @@ pipeline{
     
         stage("Checkout"){
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Karimbraham/GitJenDocKub'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Yahya-Hbazi/devops'
             }
 
         }
@@ -61,13 +61,6 @@ pipeline{
 
         }
         
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    sh "kubectl apply -f kubernetes-manifests/"
-                }
-            }
-        }
     }
 
 }
